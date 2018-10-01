@@ -1,0 +1,25 @@
+﻿@using Microsoft.Ajax.Utilities
+@model Vidly.Models.Movie
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+
+<ul>
+    <li>
+        Gener: @Model.GenreType.Genre
+    </li>
+    <li>
+        Release Date: @Model.ReleaseDate
+    </li>
+    <li>
+        Date Added: @Model.DateAdded
+    </li>
+    <li>
+        Number in Stock: @Model.NumberInStock
+    </li>
+</ul>
+
+
