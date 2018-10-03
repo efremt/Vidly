@@ -8,6 +8,9 @@ using Vidly.Models;
 
 namespace Vidly.Controllers
 {
+    using System.Security.AccessControl;
+    using Vidly.Models.ViewModel;
+
     public class CustomersController : Controller
     {
         private ApplicationDbContext _context;
@@ -40,6 +43,25 @@ namespace Vidly.Controllers
 
             return View(customer);
 
+        }
+
+        public ActionResult New()
+        {
+            List<MembershipType> membershipTypes = this._context.MembershipTypes.ToList();
+            NewCustomerViewModel viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return this.View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Create(Customer customer) //Model binding (Customer customer)
+        {
+            this._context.Customers.Add(customer);
+            this._context.SaveChanges();
+
+            return RedirectToAction("Index","Customers");
         }
     }
 }

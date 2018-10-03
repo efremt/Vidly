@@ -10,9 +10,13 @@ namespace Vidly.Models
     {
         public byte Id { get; set; }
         [Required]
+
         public string Name { get; set; }
+
         public  short SingUpFee { get; set; }
+
         public byte DurationInMonth { get; set; }
+
         public byte DiscountRate { get; set; }
     }
 }
