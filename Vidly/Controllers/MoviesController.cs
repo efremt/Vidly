@@ -34,7 +34,55 @@ namespace Vidly.Controllers
 
             return View(movies);
         }
-       // GET: Movies/Random
+
+        public ViewResult New()
+        {
+            List<GenreType> genreTypes= this._context.GenreTypes.ToList();
+            MovieFormViewModel ViewModel = new MovieFormViewModel
+            {
+                GenreType= genreTypes
+            };
+
+            return this.View("MovieForm", ViewModel);
+        }
+
+        public ViewResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            List<GenreType> genreTypes = this._context.GenreTypes.ToList();
+
+            MovieFormViewModel ViewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                GenreType = genreTypes
+            };
+
+            return View("MovieForm", ViewModel);
+        }
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            
+            if (movie.Id != 0)
+            {
+                Movie MovieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+
+                MovieInDb.Name = movie.Name;
+                MovieInDb.ReleaseDate = movie.ReleaseDate;
+                MovieInDb.GenreTypeId = movie.GenreTypeId;
+                MovieInDb.NumberInStock = movie.NumberInStock;
+            }
+            else
+            {
+                movie.DateAdded = DateTime.Now;
+                _context.Movies.Add(movie);
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+        }
+        // GET: Movies/Random
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Shrek!" };
@@ -129,5 +177,6 @@ namespace Vidly.Controllers
 
         //}
 
+        
     }
 }
