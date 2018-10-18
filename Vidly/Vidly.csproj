@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -302,6 +305,10 @@
     <Compile Include="Migrations\201810111232587_Model_Update_BasedOn_Exersice.Designer.cs">
       <DependentUpon>201810111232587_Model_Update_BasedOn_Exersice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810180421289_AddMovieRequiredFields.cs" />
+    <Compile Include="Migrations\201810180421289_AddMovieRequiredFields.Designer.cs">
+      <DependentUpon>201810180421289_AddMovieRequiredFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -476,6 +483,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810111232587_Model_Update_BasedOn_Exersice.resx">
       <DependentUpon>201810111232587_Model_Update_BasedOn_Exersice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810180421289_AddMovieRequiredFields.resx">
+      <DependentUpon>201810180421289_AddMovieRequiredFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

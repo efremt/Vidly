@@ -57,6 +57,7 @@ namespace Vidly.Controllers
             return this.View("CustomerForm",ViewModel);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken] //To validate the tocken in the cookei and the form are the same for prevent Anti-forgery
         public ActionResult Save(Customer customer) //Model binding (Customer customer)
         {
             if (!ModelState.IsValid)
