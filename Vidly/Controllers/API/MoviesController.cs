@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -10,6 +11,8 @@ using Vidly.Models;
 
 namespace Vidly.Controllers.API
 {
+    using Microsoft.Ajax.Utilities;
+
     public class MoviesController : ApiController
     {
         private ApplicationDbContext _context;
@@ -21,7 +24,10 @@ namespace Vidly.Controllers.API
         // GET /api/movies
         public IEnumerable<MovieDto> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _context.Movies
+                .Include(m=>m.GenreType)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
         }
 
         // GET /api/movie/1
@@ -56,32 +62,36 @@ namespace Vidly.Controllers.API
 
         // PUT /api/movies/1
         [HttpPut]
-        public void UpdateMovie(int id, MovieDto movieDto)
+        public IHttpActionResult UpdateMovie(int id, MovieDto movieDto)
         {
-            if(!ModelState.IsValid)
-                throw new HttpRequestException(HttpStatusCode.BadRequest.ToString());
+            if (!ModelState.IsValid)
+                return this.BadRequest();
 
             var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
-                throw new HttpRequestException(HttpStatusCode.NotFound.ToString());
+                return this.NotFound();
 
             Mapper.Map(movieDto, movieInDb);
 
             _context.SaveChanges();
-            
+
+            return this.Ok();
+
         }
 
         [HttpDelete]
-        public void DeleteMovie(int id)
+        public IHttpActionResult DeleteMovie(int id)
         {
-            var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == id);
+            Movie movieInDb = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
-                throw new HttpRequestException(HttpStatusCode.NotFound.ToString());
+                this.NotFound();
 
             _context.Movies.Remove(movieInDb);
             _context.SaveChanges();
+
+            return this.Ok();
         }
     }
 }
