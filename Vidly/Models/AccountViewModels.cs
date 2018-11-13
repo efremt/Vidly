@@ -3,11 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Vidly.Models
 {
+    using System.ComponentModel;
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -64,6 +70,9 @@ namespace Vidly.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [DisplayName("Driving License")]
+        public string DrivingLicense { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
