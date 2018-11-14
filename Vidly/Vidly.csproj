@@ -334,19 +334,32 @@
     <Compile Include="Migrations\201811130857473_AddDrivingLicens.Designer.cs">
       <DependentUpon>201811130857473_AddDrivingLicens.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811140306434_AddPhoneToApplicationUser.cs" />
+    <Compile Include="Migrations\201811140306434_AddPhoneToApplicationUser.Designer.cs">
+      <DependentUpon>201811140306434_AddPhoneToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\GenreType.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfaMember.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\RoleName.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ViewModel\CustomerFormViewModel.cs" />
+    <Compile Include="Models\ViewModel\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="Models\ViewModel\ExternalLoginListViewModel.cs" />
+    <Compile Include="Models\ViewModel\ForgotPasswordViewModel.cs" />
+    <Compile Include="Models\ViewModel\ForgotViewModel.cs" />
+    <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\MovieFormViewModel.cs" />
     <Compile Include="Models\ViewModel\RandomMovieViewModel.cs" />
+    <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
+    <Compile Include="Models\ViewModel\ResetPasswordViewModel.cs" />
+    <Compile Include="Models\ViewModel\SendCodeViewModel.cs" />
+    <Compile Include="Models\ViewModel\VerifyCodeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -694,6 +707,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811130857473_AddDrivingLicens.resx">
       <DependentUpon>201811130857473_AddDrivingLicens.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811140306434_AddPhoneToApplicationUser.resx">
+      <DependentUpon>201811140306434_AddPhoneToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

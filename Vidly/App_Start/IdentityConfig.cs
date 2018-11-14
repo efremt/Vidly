@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Vidly.Models;
+using Vidly.Models.ViewModel;
 
 namespace Vidly
 {
@@ -104,6 +105,11 @@ namespace Vidly
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+        }
+
+        internal Task SignInAsync(ApplicationUser user, bool isPersistent, bool rememberBrowser)
+        {
+            throw new NotImplementedException();
         }
     }
 }
